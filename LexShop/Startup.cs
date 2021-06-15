@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using LexShop.Model;
 
 namespace LexShop
 {
@@ -25,6 +27,12 @@ namespace LexShop
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+			services.AddDbContext<LexShopContext>(optionsBuilder =>
+			{
+				string connection = Configuration.GetConnectionString("LexShopDB");
+				optionsBuilder.UseSqlServer(connection);
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
