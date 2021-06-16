@@ -19,4 +19,9 @@
     <ProjectReference Include="..\LexShop.Model\LexShop.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\files\icons\" />
+    <Folder Include="wwwroot\files\products\" />
+  </ItemGroup>
+
 </Project>
