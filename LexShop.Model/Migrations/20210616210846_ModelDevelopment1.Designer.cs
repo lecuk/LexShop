@@ -4,14 +4,16 @@ using LexShop.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LexShop.Model.Migrations
 {
     [DbContext(typeof(LexShopContext))]
-    partial class LexShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210616210846_ModelDevelopment1")]
+    partial class ModelDevelopment1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

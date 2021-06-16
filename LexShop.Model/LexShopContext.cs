@@ -6,6 +6,11 @@ namespace LexShop.Model
 	public class LexShopContext : DbContext
 	{
 		public DbSet<Person> Person { get; set; }
+		public DbSet<Category> Category { get; set; }
+		public DbSet<Product> Product { get; set; }
+		public DbSet<Vendor> Vendor { get; set; }
+		public DbSet<PaymentMethod> PaymentMethod { get; set; }
+		public DbSet<Purchase> Purchase { get; set; }
 
 		public LexShopContext(DbContextOptions<LexShopContext> options) : base(options)
 		{
