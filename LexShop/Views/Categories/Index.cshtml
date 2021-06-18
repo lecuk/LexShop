@@ -10,6 +10,9 @@
     <thead>
         <tr>
             <th>
+                Image
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -21,6 +24,9 @@
     <tbody>
 @foreach (var category in Model) {
         <tr>
+            <td>
+                <img src="~/files/categories/@Html.DisplayFor(modelItem => category.HeaderImageName)" height="80"/>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => category.Name)
             </td>

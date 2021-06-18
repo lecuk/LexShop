@@ -44,7 +44,7 @@ namespace LexShop
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/home/error");
 				app.UseHsts();
 			}
 
@@ -53,11 +53,6 @@ namespace LexShop
 
 			app.UseMvc(routes =>
 			{
-				routes.MapRoute(
-					name: "home",
-					template: "/",
-					defaults: new { controller = "Home", action = "Index" });
-
 				routes.MapRoute(
 					name: "categories",
 					template: "/categories",
@@ -72,6 +67,11 @@ namespace LexShop
 					name: "product",
 					template: "/products/{id}",
 					defaults: new { controller = "Products", action = "View", id = String.Empty });
+
+				routes.MapRoute(
+					name: "home",
+					template: "/",
+					defaults: new { controller = "Home", action = "Index" });
 			});
 		}
 	}

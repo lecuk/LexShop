@@ -15,5 +15,17 @@ namespace LexShop.Model
 		public LexShopContext(DbContextOptions<LexShopContext> options) : base(options)
 		{
 		}
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			builder.Entity<Category>(entity =>
+			{
+				entity.HasKey(category => category.Id);
+				entity
+					.HasOne(c => c.ParentCategory)
+					.WithMany(c => c.ChildCategories)
+					.IsRequired(false);
+			});
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using LexShop.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,6 +31,8 @@ namespace LexShop.Controllers
 			}
 
 			Category category = await _context.Category
+				.Include(c => c.ParentCategory)
+				.Include(c => c.ChildCategories)
 				.FirstOrDefaultAsync(m => m.Id == id);
 
 			if (category == null)

@@ -1,36 +1,35 @@
 ﻿@model LexShop.Model.Category
 
 @{
+    var category = Model;
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Category</h4>
+    <img src="~/files/categories/@category.HeaderImageName" />
+    <h3>@category.Name</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(category => category.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(category => category.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(category => category.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(category => category.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(category => category.ParentCategory)
-        </dt>
-        <dd>
-            @Html.DisplayFor(category => category.ParentCategory.Id)
-        </dd>
-    </dl>
+    <div>
+        @category.Description
+    </div>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a> | 
-    <a asp-action="Index" asp-route-id="@Html.DisplayFor(category => category.ParentCategory.Id)">To parent</a>
+    <h6>Sub-categories</h6>
+    @if (category.ChildCategories != null)
+    {
+        @foreach (var childCategory in category.ChildCategories)
+        {
+            <div>
+                <img src="~/files/categories/@childCategory.HeaderImageName" height="80" />
+                <h4>@childCategory.Name</h4>
+            </div>
+        }
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+    @if (category.ParentCategory != null)
+    {
+        <a asp-action="View" asp-route-id="@category.ParentCategory.Id">To parent</a>
+    }
 </div>

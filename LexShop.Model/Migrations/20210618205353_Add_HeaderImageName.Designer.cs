@@ -4,14 +4,16 @@ using LexShop.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LexShop.Model.Migrations
 {
     [DbContext(typeof(LexShopContext))]
-    partial class LexShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210618205353_Add_HeaderImageName")]
+    partial class Add_HeaderImageName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,7 +140,7 @@ namespace LexShop.Model.Migrations
             modelBuilder.Entity("LexShop.Model.Category", b =>
                 {
                     b.HasOne("LexShop.Model.Category", "ParentCategory")
-                        .WithMany("ChildCategories")
+                        .WithMany()
                         .HasForeignKey("ParentCategoryId");
                 });
 
