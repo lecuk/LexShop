@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LexShop", "LexShop\LexShop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexShop.Administration", "LexShop.Administration\LexShop.Administration.csproj", "{7D2D48C8-BF58-4E18-823C-AB44AF65C703}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexShop.ViewModels", "LexShop.ViewModels\LexShop.ViewModels.csproj", "{D84A4112-8B8E-48C6-B03F-B3396F5A26D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7D2D48C8-BF58-4E18-823C-AB44AF65C703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D2D48C8-BF58-4E18-823C-AB44AF65C703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D2D48C8-BF58-4E18-823C-AB44AF65C703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D84A4112-8B8E-48C6-B03F-B3396F5A26D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D84A4112-8B8E-48C6-B03F-B3396F5A26D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D84A4112-8B8E-48C6-B03F-B3396F5A26D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D84A4112-8B8E-48C6-B03F-B3396F5A26D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

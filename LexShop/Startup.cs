@@ -54,8 +54,24 @@ namespace LexShop
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
-					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
+					name: "home",
+					template: "/",
+					defaults: new { controller = "Home", action = "Index" });
+
+				routes.MapRoute(
+					name: "categories",
+					template: "/categories",
+					defaults: new { controller = "Categories", action = "Index" });
+
+				routes.MapRoute(
+					name: "category",
+					template: "/categories/{id}",
+					defaults: new { controller = "Categories", action = "View", id = String.Empty });
+
+				routes.MapRoute(
+					name: "product",
+					template: "/products/{id}",
+					defaults: new { controller = "Products", action = "View", id = String.Empty });
 			});
 		}
 	}

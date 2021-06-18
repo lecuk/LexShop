@@ -1,4 +1,4 @@
-﻿@model LexShop.Model.Category
+﻿@model LexShop.ViewModels.Category.CreateCategoryViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -21,6 +21,11 @@
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentCategoryId" class="control-label"></label>
+                <input asp-for="ParentCategoryId" class="form-control" />
+                <span asp-validation-for="ParentCategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

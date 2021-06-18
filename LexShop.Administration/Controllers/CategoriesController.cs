@@ -24,7 +24,7 @@ namespace LexShop.Administration.Controllers
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Categories/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)

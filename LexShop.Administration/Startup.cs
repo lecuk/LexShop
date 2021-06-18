@@ -56,7 +56,18 @@ namespace LexShop.Administration
 			{
 				routes.MapRoute(
 					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
+					template: "/",
+					defaults: new { controller = "Home", action = "Index"});
+
+				routes.MapRoute(
+					name: "categories",
+					template: "/categories/{id}",
+					defaults: new { controller = "Categories", action = "Index", id = String.Empty });
+
+				routes.MapRoute(
+					name: "products",
+					template: "/products/{id}",
+					defaults: new { controller = "Products", action = "Index", id = String.Empty });
 			});
 		}
 	}
