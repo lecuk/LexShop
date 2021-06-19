@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using LexShop.Model;
+using LexShop.Services;
 
 namespace LexShop
 {
@@ -33,6 +34,8 @@ namespace LexShop
 				string connection = Configuration.GetConnectionString("LexShopDB");
 				optionsBuilder.UseSqlServer(connection);
 			});
+
+			services.AddScoped<ICategoryService, CategoryService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using LexShop.Model;
+using LexShop.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -9,43 +10,30 @@ namespace LexShop.Controllers
 {
 	public class CategoriesController : Controller
 	{
-		private readonly LexShopContext _context;
+		private readonly ICategoryService categoryService;
 
-		public CategoriesController(LexShopContext context)
+		public CategoriesController(ICategoryService categoryService)
 		{
-			_context = context;
+			this.categoryService = categoryService;
 		}
 
 		// GET: categories
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Category.ToListAsync());
+			return View(await categoryService.GetAllRootCategoriesAsync());
 		}
 
 		// GET: categories/1
 		public async Task<IActionResult> View(long? id)
 		{
-			if (id == null)
+			if (id == null || !categoryService.CategoryExists(id.Value))
 			{
 				return NotFound();
 			}
 
-			Category category = await _context.Category
-				.Include(c => c.ParentCategory)
-				.Include(c => c.ChildCategories)
-				.FirstOrDefaultAsync(m => m.Id == id);
-
-			if (category == null)
-			{
-				return NotFound();
-			}
-
+			Category category = await categoryService.GetCategoryAsync(id.Value);
+			
 			return View(category);
-		}
-
-		private bool CategoryExists(long id)
-		{
-			return _context.Category.Any(e => e.Id == id);
 		}
 	}
 }

@@ -11,7 +11,8 @@ namespace LexShop.Model
 		public long Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
-		
+
+		public virtual long? ParentCategoryId { get; set; }
 		public virtual Category ParentCategory { get; set; }
 		public virtual IEnumerable<Category> ChildCategories { get; set; }
 

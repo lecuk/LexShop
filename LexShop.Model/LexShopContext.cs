@@ -24,6 +24,7 @@ namespace LexShop.Model
 				entity
 					.HasOne(c => c.ParentCategory)
 					.WithMany(c => c.ChildCategories)
+					.HasForeignKey(c => c.ParentCategoryId)
 					.IsRequired(false);
 			});
 		}

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LexShop.Model\LexShop.Model.csproj" />
+    <ProjectReference Include="..\LexShop.Services\LexShop.Services.csproj" />
     <ProjectReference Include="..\LexShop.ViewModels\LexShop.ViewModels.csproj" />
   </ItemGroup>
 
