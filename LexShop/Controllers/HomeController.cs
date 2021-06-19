@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LexShop.ViewModels;
 using LexShop.Services;
+using LexShop.Model;
 
 namespace LexShop.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly IProductService productService;
+		private readonly ILuckyService luckyService;
 		private readonly Random random;
 
-		public HomeController(IProductService productService)
+		public HomeController(ILuckyService luckyService)
 		{
-			this.productService = productService;
+			this.luckyService = luckyService;
 			this.random = new Random();
 		}
 
@@ -44,11 +45,10 @@ namespace LexShop.Controllers
 			return View();
 		}
 
-		public IActionResult RandomProduct()
+		public async Task<IActionResult> RandomProduct()
 		{
-			long productCount = productService.GetProductCount();
-			long randomProductId = random.Next((int)productCount) + 1;
-			return Redirect($"~/products/{randomProductId}");
+			Product product = await luckyService.GetRandomProductAsync();
+			return Redirect($"~/products/{product.Id}");
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

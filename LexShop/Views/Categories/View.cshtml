@@ -8,8 +8,25 @@
 }
 
 <div>
-    <img src="~/files/categories/@category.HeaderImageName" />
-    <h3>@category.Name</h3>
+    <img src="~/files/categories/@category.HeaderImageName" height="200" />
+
+    <div>
+        @if (ancestors != null)
+        {
+            @foreach (var ancestor in ancestors)
+            {
+                <span>
+                    <a href="~/categories/@ancestor.Id">
+                        @ancestor.Name
+                    </a>
+                    &rsaquo;
+                </span>
+            }
+        }
+        <span>
+            @category.Name
+        </span>
+    </div>
     <hr />
     <div>
         @category.Description
@@ -31,10 +48,10 @@
     }
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="~/categories">Back to List</a>
     @if (category.ParentCategoryId != null)
     {
-        <a asp-action="View" asp-route-id="@category.ParentCategoryId">To parent</a>
+        <a href="~/categories/@category.ParentCategoryId">To parent</a>
     }
 
     @if (products != null)
