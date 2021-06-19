@@ -70,5 +70,11 @@ namespace LexShop.Services
 			return context.Category
 				.Any(category => category.Id == id);
 		}
+
+		public long GetCategoryCount()
+		{
+			return context.Category
+				.Count();
+		}
 	}
 }

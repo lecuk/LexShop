@@ -5,11 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LexShop.ViewModels;
+using LexShop.Services;
 
 namespace LexShop.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly IProductService productService;
+		private readonly Random random;
+
+		public HomeController(IProductService productService)
+		{
+			this.productService = productService;
+			this.random = new Random();
+		}
+
 		public IActionResult Index()
 		{
 			return View();
@@ -32,6 +42,13 @@ namespace LexShop.Controllers
 		public IActionResult Privacy()
 		{
 			return View();
+		}
+
+		public IActionResult RandomProduct()
+		{
+			long productCount = productService.GetProductCount();
+			long randomProductId = random.Next((int)productCount) + 1;
+			return Redirect($"~/products/{randomProductId}");
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

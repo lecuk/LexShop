@@ -6,6 +6,5 @@ namespace LexShop.ViewModels
 {
 	public class ViewModelBase
 	{
-		public string Error { get; set; }
 	}
 }

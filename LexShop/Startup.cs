@@ -36,6 +36,7 @@ namespace LexShop
 			});
 
 			services.AddScoped<ICategoryService, CategoryService>();
+			services.AddScoped<IProductService, ProductService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,22 +59,22 @@ namespace LexShop
 			{
 				routes.MapRoute(
 					name: "categories",
-					template: "/categories",
+					template: "~/categories",
 					defaults: new { controller = "Categories", action = "Index" });
 
 				routes.MapRoute(
 					name: "category",
-					template: "/categories/{id}",
+					template: "~/categories/{id}",
 					defaults: new { controller = "Categories", action = "View", id = String.Empty });
 
 				routes.MapRoute(
 					name: "product",
-					template: "/products/{id}",
+					template: "~/products/{id}",
 					defaults: new { controller = "Products", action = "View", id = String.Empty });
 
 				routes.MapRoute(
 					name: "home",
-					template: "/",
+					template: "~/{action?}/",
 					defaults: new { controller = "Home", action = "Index" });
 			});
 		}

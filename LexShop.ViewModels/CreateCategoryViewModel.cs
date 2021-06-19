@@ -1,4 +1,4 @@
-﻿namespace LexShop.ViewModels.Category
+﻿namespace LexShop.ViewModels
 {
 	public class CreateCategoryViewModel : ViewModelBase
 	{

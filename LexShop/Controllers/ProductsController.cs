@@ -6,39 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LexShop.Model;
+using LexShop.Services;
 
 namespace LexShop.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly LexShopContext _context;
+        private readonly IProductService productService;
 
-        public ProductsController(LexShopContext context)
+        public ProductsController(IProductService productService)
         {
-            _context = context;
+            this.productService = productService;
         }
 		
         public async Task<IActionResult> View(long? id)
         {
-            if (id == null)
+            if (id == null || !productService.ProductExists(id.Value))
             {
                 return NotFound();
             }
 
-			Product product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
+			Product product = await productService.GetProductAsync(id.Value);
 
             return View(product);
-        }
-
-        private bool ProductExists(long id)
-        {
-            return _context.Product.Any(e => e.Id == id);
         }
     }
 }

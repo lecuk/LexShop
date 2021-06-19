@@ -1,41 +1,44 @@
 ﻿@model LexShop.Model.Product
 
 @{
-    ViewData["Title"] = "Details";
+    var product = Model;
+    ViewData["Title"] = product.Name;
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Product</h4>
+    <h4>@product.Name</h4>
     <hr />
+    <img src="~/files/products/@product.IconName" width="200" />
     <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
         <dd>
-            <img src="~/files/products/@Html.DisplayFor(model => model.IconName)" />
+            @product.Name
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Description
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @product.Description
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Price
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @product.BasePrice
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IconName)
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.BasePrice)
+            Vendor
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.BasePrice)
+            <a href="/vendors/@product.VendorId">@product.Vendor.Name</a>
+        </dd>
+        <dt>
+            Category
+        </dt>
+        <dd>
+            <a href="/categories/@product.CategoryId">@product.Category.Name</a>
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

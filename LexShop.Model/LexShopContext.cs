@@ -21,11 +21,29 @@ namespace LexShop.Model
 			builder.Entity<Category>(entity =>
 			{
 				entity.HasKey(category => category.Id);
+
 				entity
 					.HasOne(c => c.ParentCategory)
 					.WithMany(c => c.ChildCategories)
 					.HasForeignKey(c => c.ParentCategoryId)
 					.IsRequired(false);
+			});
+
+			builder.Entity<Product>(entity =>
+			{
+				entity.HasKey(product => product.Id);
+
+				entity
+					.HasOne(product => product.Vendor)
+					.WithMany()
+					.HasForeignKey(product => product.VendorId)
+					.IsRequired(true);
+
+				entity
+					.HasOne(product => product.Category)
+					.WithMany()
+					.HasForeignKey(product => product.CategoryId)
+					.IsRequired(true);
 			});
 		}
 	}

@@ -1,7 +1,9 @@
-﻿@model LexShop.Model.Category
+﻿@model CategoryViewModel
 
 @{
-    var category = Model;
+    var category = Model.Category;
+    var products = Model.Products;
+    var ancestors = Model.AncestorCategories;
     ViewData["Title"] = "Details";
 }
 
@@ -20,16 +22,31 @@
         @foreach (var childCategory in category.ChildCategories)
         {
             <div>
-                <img src="~/files/categories/@childCategory.HeaderImageName" height="80" />
-                <h4>@childCategory.Name</h4>
+                <a href="~/categories/@childCategory.Id">
+                    <img src="~/files/categories/@childCategory.HeaderImageName" height="80" />
+                    <h4>@childCategory.Name</h4>
+                </a>
             </div>
         }
     }
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
-    @if (category.ParentCategory != null)
+    @if (category.ParentCategoryId != null)
     {
-        <a asp-action="View" asp-route-id="@category.ParentCategory.Id">To parent</a>
+        <a asp-action="View" asp-route-id="@category.ParentCategoryId">To parent</a>
+    }
+
+    @if (products != null)
+    {
+        @foreach (var product in products)
+        {
+            <div>
+                <a href="~/products/@product.Id">
+                    <img src="~/files/products/@product.IconName" height="80" />
+                    <h4>@product.Name</h4>
+                </a>
+            </div>
+        }
     }
 </div>

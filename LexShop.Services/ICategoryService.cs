@@ -8,6 +8,8 @@ namespace LexShop.Services
 {
 	public interface ICategoryService
 	{
+		bool CategoryExists(long id);
+
 		Category GetCategory(long id);
 		Task<Category> GetCategoryAsync(long id);
 
@@ -17,6 +19,6 @@ namespace LexShop.Services
 		IEnumerable<Category> GetAllRootCategories();
 		Task<IEnumerable<Category>> GetAllRootCategoriesAsync();
 
-		bool CategoryExists(long id);
+		long GetCategoryCount();
 	}
 }
