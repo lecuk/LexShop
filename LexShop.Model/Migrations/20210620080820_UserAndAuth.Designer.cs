@@ -4,14 +4,16 @@ using LexShop.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LexShop.Model.Migrations
 {
     [DbContext(typeof(LexShopContext))]
-    partial class LexShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210620080820_UserAndAuth")]
+    partial class UserAndAuth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +138,7 @@ namespace LexShop.Model.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("LastName");
 
                     b.HasKey("Id");
 
@@ -160,7 +162,7 @@ namespace LexShop.Model.Migrations
                         .IsUnique()
                         .HasFilter("[Email] IS NOT NULL");
 
-                    b.ToTable("Auths");
+                    b.ToTable("UserAuth");
                 });
 
             modelBuilder.Entity("LexShop.Model.Vendor", b =>

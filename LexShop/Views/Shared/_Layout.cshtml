@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ViewModelBase
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,14 +27,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">LexShop</a>
+                <a href="~/" class="navbar-brand">LexShop</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a href="~/">Home</a></li>
+                    <li><a href="~/about">About</a></li>
+                    <li><a href="~/contact">Contact</a></li>
                 </ul>
+                <div class="nav navbar-nav navbar-right">
+                    @if (Model.LoggedInUser != null)
+                    {
+                        <span class="navbar-text">Welcome, <a href="~/user">@Model.LoggedInUser.FirstName</a></span>
+                    }
+                    else
+                    {
+                        <span class="navbar-text"><a href="~/user/login">Sign in</a></span>
+                    }
+                </div>
             </div>
         </div>
     </nav>

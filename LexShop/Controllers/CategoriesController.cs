@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace LexShop.Controllers
 {
-	public class CategoriesController : Controller
+	public class CategoriesController : ControllerBase
 	{
-		private readonly ICategoryService categoryService;
-		private readonly IProductService productService;
+		protected readonly ICategoryService categoryService;
+		protected readonly IProductService productService;
 
-		public CategoriesController(ICategoryService categoryService, IProductService productService)
+		public CategoriesController(ICategoryService categoryService, IProductService productService, IUserService userService)
+			: base(userService)
 		{
 			this.categoryService = categoryService;
 			this.productService = productService;
@@ -23,7 +24,12 @@ namespace LexShop.Controllers
 		// GET: categories
 		public async Task<IActionResult> Index()
 		{
-			return View(await categoryService.GetAllRootCategoriesAsync());
+			IEnumerable<Category> rootCategories = await categoryService.GetAllRootCategoriesAsync();
+			return View(new CategoryListingViewModel()
+			{
+				RootCategories = rootCategories,
+				LoggedInUser = GetLoggedInUser()
+			});
 		}
 
 		// GET: categories/1
@@ -42,7 +48,8 @@ namespace LexShop.Controllers
 			{
 				Category = category,
 				Products = products,
-				AncestorCategories = ancestors
+				AncestorCategories = ancestors,
+				LoggedInUser = GetLoggedInUser()
 			});
 		}
 	}

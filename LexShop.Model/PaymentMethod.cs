@@ -7,5 +7,7 @@ namespace LexShop.Model
 	public class PaymentMethod
 	{
 		public long Id { get; set; }
+
+
 	}
 }

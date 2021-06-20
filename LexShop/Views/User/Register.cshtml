@@ -1,0 +1,46 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form asp-action="Register" asp-controller="User" asp-antiforgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label>Name</label><br />
+            <input type="text" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" />
+        </div>
+        <div>
+            <label>Phone Number</label><br />
+            <input type="text" asp-for="PhoneNumber" />
+            <span asp-validation-for="PhoneNumber" />
+        </div>
+        <div>
+            <label>City</label><br />
+            <input type="text" asp-for="City" />
+            <span asp-validation-for="City" />
+        </div>
+
+        <div>
+            <label>Email</label><br />
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div>
+            <label>Password</label><br />
+            <input asp-for="Password" type="password"/>
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <label>Confirm password</label><br />
+            <input asp-for="PasswordAgain" type="password" />
+            <span asp-validation-for="PasswordAgain" />
+        </div>
+        <div>
+            <input type="submit" value="Register" />
+        </div>
+    </div>
+</form>

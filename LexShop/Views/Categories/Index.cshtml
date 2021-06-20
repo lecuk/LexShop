@@ -1,7 +1,7 @@
-﻿@model IEnumerable<LexShop.Model.Category>
+﻿@model CategoryListingViewModel
 
 @{
-    var categories = Model;
+    var categories = Model.RootCategories;
     ViewData["Title"] = "Index";
 }
 
@@ -35,7 +35,7 @@
                 @category.Description
             </td>
             <td>
-                <a asp-action="View" asp-route-id="@category.Id">Details</a>
+                <a href="~/categories/@category.Id">Details</a>
             </td>
         </tr>
 }

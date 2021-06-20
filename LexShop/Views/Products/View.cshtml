@@ -1,7 +1,7 @@
-﻿@model LexShop.Model.Product
+﻿@model ProductViewModel
 
 @{
-    var product = Model;
+    var product = Model.Product;
     ViewData["Title"] = product.Name;
 }
 
@@ -41,4 +41,7 @@
             <a href="/categories/@product.CategoryId">@product.Category.Name</a>
         </dd>
     </dl>
+</div>
+<div>
+    <a href="~/products/@product.Id/purchase">Add to cart</a>
 </div>

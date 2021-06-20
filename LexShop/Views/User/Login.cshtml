@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form action="/user/login" method="post" asp-antiforgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label>Email</label><br />
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div>
+            <label>Password</label><br />
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <input asp-for="ReturnUrl" type="text" value="@ViewData["ReturnUrl"]" hidden />
+        <div>
+            <input type="submit" value="Sign-in" />
+        </div>
+    </div>
+</form>
+<div>
+    Don't have an account? Create one <a href="~/user/register">here</a>!
+</div>
+

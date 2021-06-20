@@ -10,12 +10,13 @@ using LexShop.Model;
 
 namespace LexShop.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : ControllerBase
 	{
-		private readonly ILuckyService luckyService;
-		private readonly Random random;
+		protected readonly ILuckyService luckyService;
+		protected readonly Random random;
 
-		public HomeController(ILuckyService luckyService)
+		public HomeController(ILuckyService luckyService, IUserService userService)
+			: base(userService)
 		{
 			this.luckyService = luckyService;
 			this.random = new Random();
@@ -23,26 +24,38 @@ namespace LexShop.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			return View(new ViewModelBase()
+			{
+				LoggedInUser = GetLoggedInUser()
+			});
 		}
 
 		public IActionResult About()
 		{
 			ViewData["Message"] = "Your application description page.";
 
-			return View();
+			return View(new ViewModelBase()
+			{
+				LoggedInUser = GetLoggedInUser()
+			});
 		}
 
 		public IActionResult Contact()
 		{
 			ViewData["Message"] = "Your contact page.";
 
-			return View();
+			return View(new ViewModelBase()
+			{
+				LoggedInUser = GetLoggedInUser()
+			});
 		}
 
 		public IActionResult Privacy()
 		{
-			return View();
+			return View(new ViewModelBase()
+			{
+				LoggedInUser = GetLoggedInUser()
+			});
 		}
 
 		public async Task<IActionResult> RandomProduct()
